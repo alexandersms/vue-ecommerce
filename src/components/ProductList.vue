@@ -1,5 +1,9 @@
 <template>
-  <div class="row">
+  <div class="d-flex align-items-stretch flex-wrap">
+    <product-card />
+    <product-card />
+    <product-card />
+    <product-card />
     <product-card />
   </div>
 </template>
