@@ -13,3 +13,7 @@ export const getProduct = ({ commit }, productIsbn) => {
       commit("SET_PRODUCT", response.data);
     });
 };
+
+export const addProductToCart = ({ commit }, { product, quantity }) => {
+  commit("ADD_TO_CART", { product, quantity });
+};

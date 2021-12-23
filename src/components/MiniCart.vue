@@ -1,10 +1,10 @@
 <template>
   <div class="dropdown-menu p-2 minicartSize" aria-labelledby="triggerId">
-    <div>
+    <div v-for="item in cart" :key="item.product.isbn">
       <div class="px-2 d-flex justify-content-between">
         <div>
-          <strong>Product title</strong>
-          <br />1x23$
+          <strong>{{ item.product.title }}</strong>
+          <br />{{ item.quantity }}x{{ item.product.price }}€
         </div>
         <div>
           <a href="#" class="badge badge-secondary">remove</a>
@@ -20,7 +20,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    cart() {
+      return this.$store.state.cart;
+    },
+  },
+};
 </script>
 
 <style scoped>
