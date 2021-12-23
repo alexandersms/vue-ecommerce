@@ -1,10 +1,10 @@
 <template>
   <div class="d-flex align-items-stretch flex-wrap">
-    <product-card />
-    <product-card />
-    <product-card />
-    <product-card />
-    <product-card />
+    <product-card
+      v-for="product in products"
+      :key="product.isbn"
+      :product="product"
+    />
   </div>
 </template>
 
@@ -14,6 +14,16 @@ import ProductCard from "@/components/ProductCard.vue";
 export default {
   components: { ProductCard },
   name: "ProductList",
+
+  computed: {
+    products() {
+      return this.$store.state.products;
+    },
+  },
+
+  mounted() {
+    this.$store.dispatch("getProducts");
+  },
 };
 </script>
 

@@ -25,7 +25,11 @@
 <script>
 export default {
   name: "Product",
-  props: ["id"],
+  props: ["isbn"],
+
+  mounted() {
+    this.$store.dispatch("getProduct", this.isbn);
+  },
 };
 </script>
 
