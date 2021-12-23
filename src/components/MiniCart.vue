@@ -13,7 +13,7 @@
     </div>
     <hr />
     <div class="d-flex justify-content-between">
-      <span>Total: 25$</span>
+      <span>Total: 25€</span>
       <a href="#">Clear Cart</a>
     </div>
   </div>
