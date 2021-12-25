@@ -16,4 +16,15 @@ export const getProduct = ({ commit }, productIsbn) => {
 
 export const addProductToCart = ({ commit }, { product, quantity }) => {
   commit("ADD_TO_CART", { product, quantity });
+
+  axios.post("https://henri-potier.techx.fr/cart", {
+    product_isbn: product.isbn,
+    quantity,
+  });
+};
+
+export const getCartItems = ({ commit }) => {
+  axios.get("https://henri-potier.techx.fr/cart").then((response) => {
+    commit("SET_CART", response.data);
+  });
 };
