@@ -23,8 +23,20 @@ export const addProductToCart = ({ commit }, { product, quantity }) => {
   });
 };
 
-export const getCartItems = ({ commit }) => {
-  axios.get("https://henri-potier.techx.fr/cart").then((response) => {
-    commit("SET_CART", response.data);
-  });
+// export const getCartItems = ({ commit }) => {
+//   axios.get("https://henri-potier.techx.fr/cart").then((response) => {
+//     commit("SET_CART", response.data);
+//   });
+// };
+
+export const removeProductFromCart = ({ commit }, product) => {
+  commit("REMOVE_PRODUCT_FROM_CART", product);
+
+  // axios.delete(`https://henri-potier.techx.fr/cart/${product.isbn}`);
+};
+
+export const clearCartItems = ({ commit }) => {
+  commit("CLEAR_CART_ITEMS");
+
+  // axios.delete("https://henri-potier.techx.fr/cart");
 };

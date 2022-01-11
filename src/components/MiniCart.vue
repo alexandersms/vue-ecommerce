@@ -7,7 +7,12 @@
           <br />{{ item.quantity }}x{{ item.product.price }}€
         </div>
         <div>
-          <a href="#" class="badge badge-secondary">remove</a>
+          <a
+            href="#"
+            class="badge badge-secondary"
+            @click.prevent="removeProductFromCart(item.product)"
+            >remove</a
+          >
         </div>
       </div>
       <hr />
@@ -15,7 +20,7 @@
 
     <div class="d-flex justify-content-between">
       <span>Total: {{ cartTotalPrice }}€</span>
-      <a href="#">Clear Cart</a>
+      <a href="#" @click.prevent="clearCartItems()">Clear Cart</a>
     </div>
   </div>
 </template>
@@ -31,8 +36,17 @@ export default {
     },
   },
 
-  mounted() {
-    this.$store.dispatch("getCartItems");
+  // mounted() {
+  //   this.$store.dispatch("getCartItems");
+  // },
+
+  methods: {
+    removeProductFromCart(product) {
+      this.$store.dispatch("removeProductFromCart", product);
+    },
+    clearCartItems() {
+      this.$store.dispatch("clearCartItems");
+    },
   },
 };
 </script>
