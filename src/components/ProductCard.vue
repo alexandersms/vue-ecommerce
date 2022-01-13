@@ -26,7 +26,7 @@ export default {
   name: "ProductCard",
   props: ["book"],
   methods: {
-    ...mapActions(["addProductToCart"]),
+    ...mapActions("cart", ["addProductToCart"]),
     addToCart() {
       this.addProductToCart({
         book: this.book,

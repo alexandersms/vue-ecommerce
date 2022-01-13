@@ -13,9 +13,10 @@ export default {
   name: "ProductList",
 
   computed: {
-    ...mapState({
-      books: (state) => state.book.books,
-    }),
+    ...mapState("book", ["books"]),
+    // ...mapState({
+    //   books: (state) => state.book.books,
+    // }),
   },
 
   mounted() {

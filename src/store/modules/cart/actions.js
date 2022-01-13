@@ -1,13 +1,13 @@
 //import axios from "axios";
-import Cart from "../../../apis/Cart";
+//import Cart from "../../../apis/Cart";
 
 export const addProductToCart = ({ commit }, { book, quantity }) => {
   commit("ADD_TO_CART", { book, quantity });
 
-  Cart.store({
-    book_isbn: book.isbn,
-    quantity,
-  });
+  // Cart.store({
+  //   book_isbn: book.isbn,
+  //   quantity,
+  // });
 
   // axios.post("https://henri-potier.techx.fr/cart", {
   //   product_isbn: product.isbn,

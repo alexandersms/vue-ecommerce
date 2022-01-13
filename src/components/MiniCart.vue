@@ -29,9 +29,10 @@
 import { mapGetters, mapState, mapActions } from "vuex";
 export default {
   computed: {
-    ...mapState({
-      cart: (state) => state.cart.cart,
-    }),
+    ...mapState("cart", ["cart"]),
+    // ...mapState({
+    //   cart: (state) => state.cart.cart,
+    // }),
     ...mapGetters("cart", ["cartTotalPrice"]),
     // ...mapGetters({
     //   cartTotalPrice: "cart/cartTotalPrice",

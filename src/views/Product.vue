@@ -31,9 +31,10 @@ export default {
   props: ["isbn"],
 
   computed: {
-    ...mapState({
-      book: (state) => state.book.book,
-    }),
+    ...mapState("book", ["book"]),
+    // ...mapState({
+    //   book: (state) => state.book.book,
+    // }),
   },
 
   mounted() {
@@ -41,7 +42,8 @@ export default {
   },
 
   methods: {
-    ...mapActions(["getBook", "addProductToCart"]),
+    ...mapActions("book", ["getBook"]),
+    ...mapActions("cart", ["addProductToCart"]),
     addToCart() {
       this.addProductToCart({
         book: this.book,
