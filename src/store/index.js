@@ -7,10 +7,16 @@ import state from "./state";
 import * as getters from "./getters";
 import * as mutations from "./mutations";
 import * as actions from "./actions";
+import book from "./modules/book";
+import cart from "./modules/cart";
 
 export default new Vuex.Store({
   state,
   getters,
   mutations,
   actions,
+  modules: {
+    book,
+    cart,
+  },
 });

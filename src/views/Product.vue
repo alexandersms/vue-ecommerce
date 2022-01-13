@@ -31,18 +31,20 @@ export default {
   props: ["isbn"],
 
   computed: {
-    ...mapState(["product"]),
+    ...mapState({
+      book: (state) => state.book.book,
+    }),
   },
 
   mounted() {
-    this.getProduct(this.isbn);
+    this.getBook(this.isbn);
   },
 
   methods: {
-    ...mapActions(["getProduct", "addProductToCart"]),
+    ...mapActions(["getBook", "addProductToCart"]),
     addToCart() {
       this.addProductToCart({
-        product: this.product,
+        book: this.book,
         quantity: 1,
       });
     },

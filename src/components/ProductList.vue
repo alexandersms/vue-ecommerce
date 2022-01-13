@@ -1,10 +1,6 @@
 <template>
   <div class="d-flex align-items-stretch flex-wrap">
-    <product-card
-      v-for="product in products"
-      :key="product.isbn"
-      :product="product"
-    />
+    <product-card v-for="book in books" :key="book.isbn" :book="book" />
   </div>
 </template>
 
@@ -17,15 +13,18 @@ export default {
   name: "ProductList",
 
   computed: {
-    ...mapState(["products"]),
+    ...mapState({
+      books: (state) => state.book.books,
+    }),
   },
 
   mounted() {
-    this.getProducts();
+    this.getBooks();
   },
 
   methods: {
-    ...mapActions(["getProducts"]),
+    ...mapActions("book", ["getBooks"]),
+    // ...mapActions(["getBooks"]),
   },
 };
 </script>

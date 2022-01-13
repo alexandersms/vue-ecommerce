@@ -1,16 +1,16 @@
 <template>
   <div class="dropdown-menu p-2 minicartSize" aria-labelledby="triggerId">
-    <div v-for="item in cart" :key="item.product.isbn">
+    <div v-for="item in cart" :key="item.book.isbn">
       <div class="px-2 d-flex justify-content-between">
         <div>
-          <strong>{{ item.product.title }}</strong>
-          <br />{{ item.quantity }}x{{ item.product.price }}€
+          <strong>{{ item.book.title }}</strong>
+          <br />{{ item.quantity }}x{{ item.book.price }}€
         </div>
         <div>
           <a
             href="#"
             class="badge badge-secondary"
-            @click.prevent="removeProductFromCart(item.product)"
+            @click.prevent="removeProductFromCart(item.book)"
             >remove</a
           >
         </div>
@@ -29,8 +29,13 @@
 import { mapGetters, mapState, mapActions } from "vuex";
 export default {
   computed: {
-    ...mapState(["cart"]),
-    ...mapGetters(["cartTotalPrice"]),
+    ...mapState({
+      cart: (state) => state.cart.cart,
+    }),
+    ...mapGetters("cart", ["cartTotalPrice"]),
+    // ...mapGetters({
+    //   cartTotalPrice: "cart/cartTotalPrice",
+    // }),
   },
 
   // mounted() {
@@ -40,7 +45,8 @@ export default {
   // },
 
   methods: {
-    ...mapActions(["removeProductFromCart", "clearCartItems"]),
+    ...mapActions("cart", ["removeProductFromCart", "clearCartItems"]),
+    // ...mapActions(["removeProductFromCart", "clearCartItems"]),
   },
 };
 </script>

@@ -36,7 +36,12 @@ export default {
   components: {
     MiniCart,
   },
-  computed: mapGetters(["cartItemCount"]),
+  computed: {
+    ...mapGetters("cart", ["cartItemCount"]),
+    // ...mapGetters({
+    //   cartItemCount: "cart/cartItemCount",
+    // }),
+  },
 };
 </script>
 
