@@ -1,8 +1,17 @@
 //import axios from "axios";
 //import Cart from "../../../apis/Cart";
 
-export const addProductToCart = ({ commit }, { book, quantity }) => {
+export const addProductToCart = ({ commit, dispatch }, { book, quantity }) => {
   commit("ADD_TO_CART", { book, quantity });
+
+  dispatch(
+    "notification/addNotification",
+    {
+      type: "success",
+      message: "Book added to cart.",
+    },
+    { root: true }
+  );
 
   // Cart.store({
   //   book_isbn: book.isbn,

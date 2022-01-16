@@ -1,13 +1,13 @@
 <template>
-  <div class="col-3 mt-3">
+  <div class="col-3 mt-3 mb-2">
     <div class="card h-100 text-left">
-      <img class="card-img-top w-100" :src="book.cover" alt="" />
+      <img class="card-img-top w-100" :src="book.cover" :alt="book.title" />
       <div class="card-body">
-        <h4 class="card-title">
-          <router-link :to="{ name: 'book', params: { id: book.isbn } }">{{
-            book.title
-          }}</router-link>
-        </h4>
+        <h6 class="card-title">
+          <router-link :to="{ name: 'book', params: { id: book.isbn } }">
+            {{ book.title }}
+          </router-link>
+        </h6>
         <strong>{{ book.price }}€</strong>
         <p class="card-text">Lorem ipsum dolor sit amet.</p>
       </div>
