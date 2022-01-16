@@ -7,6 +7,6 @@ export const PUSH_NOTIFICATION = (state, notification) => {
 
 export const REMOVE_NOTIFICATION = (state, notificationToRemove) => {
   state.notifications = state.notifications.filter(
-    (notification) => notification.id !== notificationToRemove.id
+    (notification) => notification.id != notificationToRemove.id
   );
 };

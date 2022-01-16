@@ -19,6 +19,12 @@ export default {
   name: "notification-message",
   props: ["notification"],
 
+  data() {
+    return {
+      timeout: null,
+    };
+  },
+
   computed: {
     typeClass() {
       return `alert-${this.notification.type}`;
@@ -26,9 +32,13 @@ export default {
   },
 
   created() {
-    setTimeout(() => {
-      this.removeNotification();
-    }, 3000);
+    this.timeout = setTimeout(() => {
+      this.removeNotification(this.notification);
+    }, 1200);
+  },
+
+  beforeDestroy() {
+    clearTimeout(this.timeout);
   },
 
   methods: {

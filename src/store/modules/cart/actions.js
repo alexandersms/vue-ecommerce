@@ -33,16 +33,34 @@ export const addProductToCart = ({ commit, dispatch }, { book, quantity }) => {
 //   // });
 // };
 
-export const removeProductFromCart = ({ commit }, book) => {
+export const removeProductFromCart = ({ commit, dispatch }, book) => {
   commit("REMOVE_PRODUCT_FROM_CART", book);
+
+  dispatch(
+    "notification/removeNotification",
+    {
+      type: "danger",
+      message: "Book removed to cart.",
+    },
+    { root: true }
+  );
 
   //Cart.delete(product.isbn);
 
   // axios.delete(`https://henri-potier.techx.fr/cart/${product.isbn}`);
 };
 
-export const clearCartItems = ({ commit }) => {
+export const clearCartItems = ({ commit, dispatch }) => {
   commit("CLEAR_CART_ITEMS");
+
+  dispatch(
+    "notification/removeNotification",
+    {
+      type: "warning",
+      message: "All books removed to cart.",
+    },
+    { root: true }
+  );
 
   //Cart.deleteAll();
   // axios.delete("https://henri-potier.techx.fr/cart");
