@@ -1,14 +1,11 @@
 <template>
   <div class="d-flex align-items-stretch flex-wrap">
-    <product-card
-      v-for="product in products"
-      :key="product.isbn"
-      :product="product"
-    />
+    <product-card v-for="book in books" :key="book.isbn" :book="book" />
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 import ProductCard from "@/components/ProductCard.vue";
 
 export default {
@@ -16,13 +13,19 @@ export default {
   name: "ProductList",
 
   computed: {
-    products() {
-      return this.$store.state.products;
-    },
+    ...mapState("book", ["books"]),
+    // ...mapState({
+    //   books: (state) => state.book.books,
+    // }),
   },
 
   mounted() {
-    this.$store.dispatch("getProducts");
+    this.getBooks();
+  },
+
+  methods: {
+    ...mapActions("book", ["getBooks"]),
+    // ...mapActions(["getBooks"]),
   },
 };
 </script>

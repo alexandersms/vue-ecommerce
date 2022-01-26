@@ -1,15 +1,14 @@
 <template>
-  <div class="col-3 mt-3">
+  <div class="col-3 mt-3 mb-2">
     <div class="card h-100 text-left">
-      <img class="card-img-top w-100" :src="product.cover" alt="" />
+      <img class="card-img-top w-100" :src="book.cover" :alt="book.title" />
       <div class="card-body">
-        <h4 class="card-title">
-          <router-link
-            :to="{ name: 'product', params: { id: product.isbn } }"
-            >{{ product.title }}</router-link
-          >
-        </h4>
-        <strong>{{ product.price }}€</strong>
+        <h6 class="card-title">
+          <router-link :to="{ name: 'book', params: { id: book.isbn } }">
+            {{ book.title }}
+          </router-link>
+        </h6>
+        <strong>{{ book.price }}€</strong>
         <p class="card-text">Lorem ipsum dolor sit amet.</p>
       </div>
       <div class="px-4 pb-3">
@@ -22,13 +21,15 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "ProductCard",
-  props: ["product"],
+  props: ["book"],
   methods: {
+    ...mapActions("cart", ["addProductToCart"]),
     addToCart() {
-      this.$store.dispatch("addProductToCart", {
-        product: this.product,
+      this.addProductToCart({
+        book: this.book,
         quantity: 1,
       });
     },

@@ -16,7 +16,7 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            0 Cart
+            {{ cartItemCount }} {{ cartItemCount > 1 ? "Carts" : "Cart" }}
           </button>
           <div @click="$event.stopPropagation()">
             <mini-cart></mini-cart>
@@ -28,11 +28,19 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 import MiniCart from "@/components/MiniCart.vue";
 export default {
   name: "Header",
   components: {
     MiniCart,
+  },
+  computed: {
+    ...mapGetters("cart", ["cartItemCount"]),
+    // ...mapGetters({
+    //   cartItemCount: "cart/cartItemCount",
+    // }),
   },
 };
 </script>

@@ -1,30 +1,53 @@
 <template>
   <div class="dropdown-menu p-2 minicartSize" aria-labelledby="triggerId">
-    <div v-for="item in cart" :key="item.product.isbn">
+    <div v-for="item in cart" :key="item.book.isbn">
       <div class="px-2 d-flex justify-content-between">
         <div>
-          <strong>{{ item.product.title }}</strong>
-          <br />{{ item.quantity }}x{{ item.product.price }}€
+          <strong>{{ item.book.title }}</strong>
+          <br />{{ item.quantity }}x{{ item.book.price }}€
         </div>
         <div>
-          <a href="#" class="badge badge-secondary">remove</a>
+          <a
+            href="#"
+            class="badge badge-secondary"
+            @click.prevent="removeProductFromCart(item.book)"
+            >remove</a
+          >
         </div>
       </div>
+      <hr />
     </div>
-    <hr />
+
     <div class="d-flex justify-content-between">
-      <span>Total: 25$</span>
-      <a href="#">Clear Cart</a>
+      <span>Total: {{ cartTotalPrice }}€</span>
+      <a href="#" @click.prevent="clearCartItems()">Clear Cart</a>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapState, mapActions } from "vuex";
 export default {
   computed: {
-    cart() {
-      return this.$store.state.cart;
-    },
+    ...mapState("cart", ["cart"]),
+    // ...mapState({
+    //   cart: (state) => state.cart.cart,
+    // }),
+    ...mapGetters("cart", ["cartTotalPrice"]),
+    // ...mapGetters({
+    //   cartTotalPrice: "cart/cartTotalPrice",
+    // }),
+  },
+
+  // mounted() {
+  //   this.$store.dispatch("getCartItems");
+  // after mapActions "Add getCartItems in mapActions"
+  // this.getCartItems()
+  // },
+
+  methods: {
+    ...mapActions("cart", ["removeProductFromCart", "clearCartItems"]),
+    // ...mapActions(["removeProductFromCart", "clearCartItems"]),
   },
 };
 </script>
